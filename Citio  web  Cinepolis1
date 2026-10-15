@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<!-- Declaración del estándar HTML5 -->
+<html lang="es">
+<head>
+    <!-- Configuración de caracteres e idioma (Español) -->
+    <meta charset="UTF-8">
+    <!-- Configuración para asegurar que sea 100% adaptable en pantallas móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinépolis - La Capital del Cine</title>
+
+    <!-- Importación de fuente tipográfica 'Roboto' desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- ESTILOS CSS DEL SITIO WEB -->
+    <style>
+        /* Variables globales con la paleta de colores de Cinépolis */
+        :root {
+            --azul-cinepolis: #0b2154;
+            --azul-oscuro: #05112e;
+            --amarillo-cinepolis: #ffc20e;
+            --gris-fondo: #f4f6f9;
+            --texto-oscuro: #222222;
+            --blanco: #ffffff;
+        }
+
+        /* Reset global para eliminar márgenes predeterminados */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--gris-fondo);
+            color: var(--texto-oscuro);
+        }
+
+        /* ==========================================
+           1. ENCABEZADO (HEADER)
+           ========================================== */
+        header {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--amarillo-cinepolis);
+        }
+
+        /* Logo corporativo Cinépolis */
+        .logo-cinepolis {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--amarillo-cinepolis);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo-cinepolis span {
+            color: var(--blanco);
+        }
+
+        /* Selector de ciudad / cine */
+        .selector-cine select {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            background-color: #1a326a;
+            color: var(--blanco);
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Acceso rápido a Club Cinépolis */
+        .header-club-btn {
+            background-color: var(--amarillo-cinepolis);
+            color: var(--azul-oscuro);
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .header-club-btn:hover {
+            background-color: #e0a800;
+        }
+
+        /* ==========================================
+           2. BARRA DE NAVEGACIÓN (NAV)
+           ========================================== */
+        nav {
+            background-color: var(--azul-cinepolis);
+            padding: 12px 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--amarillo-cinepolis);
+        }
+
+        /* ==========================================
+           3. CUERPO PRINCIPAL (MAIN)
+           ========================================== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* Banner promocional principal */
+        .banner-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro), var(--azul-cinepolis));
+            color: var(--blanco);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .banner-hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: var(--amarillo-cinepolis);
+        }
+
+        .banner-hero p {
+            font-size: 16px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        /* Estructura para títulos de sección */
+        .titulo-seccion {
+            font-size: 26px;
+            color: var(--azul-cinepolis);
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--amarillo-cinepolis);
+            display: inline-block;
+        }
+
+        /* Rejilla para mostrar las películas (Grid) */
+        .grid-peliculas {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* Tarjeta de Película */
+        .tarjeta-pelicula {
+            background: var(--blanco);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tarjeta-pelicula:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
+
+        /* Contenedor del póster de película */
+        .poster-container {
+            position: relative;
+            height: 310px;
+            background-color: #222;
+        }
+
+        .poster-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Insignia de Clasificación / Estreno */
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--amarillo-cinepolis);
+            color: var(--azul-oscuro);
+            font-weight: bold;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        /* Info interna de la tarjeta */
+        .info-pelicula {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .info-pelicula h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--azul-oscuro);
+        }
+
+        .info-pelicula p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn-boletos {
+            background-color: var(--azul-cinepolis);
+            color: var(--blanco);
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+
+        .btn-boletos:hover {
+            background-color: var(--amarillo-cinepolis);
+            color: var(--azul-oscuro);
+        }
+
+        /* ==========================================
+           4. SECCIÓN CLUB CINÉPOLIS (FORMULARIO DE INGRESO Y REGISTRO)
+           ========================================== */
+        .seccion-club {
+            background-color: var(--blanco);
+            border: 2px solid var(--amarillo-cinepolis);
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .contenedor-formularios {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .columna-form {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .columna-form h3 {
+            font-size: 20px;
+            color: var(--azul-cinepolis);
+            margin-bottom: 15px;
+        }
+
+        /* Estilos de los inputs del formulario */
+        .grupo-campo {
+            margin-bottom: 18px;
+        }
+
+        .grupo-campo label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: var(--texto-oscuro);
+        }
+
+        .grupo-campo input {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .grupo-campo input:focus {
+            border-color: var(--azul-cinepolis);
+        }
+
+        .btn-enviar {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--azul-cinepolis);
+            color: var(--blanco);
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background-color: #08173e;
+        }
+
+        .btn-registro {
+            background-color: var(--amarillo-cinepolis);
+            color: var(--azul-oscuro);
+        }
+
+        .btn-registro:hover {
+            background-color: #e0a800;
+        }
+
+        /* Divisor entre formularios */
+        .divisor {
+            width: 1px;
+            background-color: #e0e0e0;
+        }
+
+        /* ==========================================
+           5. PIE DE PÁGINA (FOOTER)
+           ========================================== */
+        footer {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+            border-top: 4px solid var(--amarillo-cinepolis);
+        }
+
+        .footer-contenido {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h4 {
+            color: var(--amarillo-cinepolis);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: #cccccc;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 2;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--blanco);
+        }
+
+        .footer-creditos {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #1a326a;
+            font-size: 13px;
+            color: #888888;
+        }
+
+        /* Adaptación para pantallas pequeñas */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .divisor {
+                display: none;
+            }
+
+            .banner-hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================
+         1. ENCABEZADO (HEADER)
+         ========================================================== -->
+    <header>
+        <!-- Logotipo oficial simulado -->
+        <a href="#" class="logo-cinepolis">Cinépolis<span>®</span></a>
+
+        <!-- Selección de Complejo/Ciudad -->
+        <div class="selector-cine">
+            <select name="ciudad" id="ciudad">
+                <option value="1">Selecciona tu ciudad...</option>
+                <option value="2">Ciudad de México - Centro</option>
+                <option value="3">Guadalajara - VIP</option>
+                <option value="4">Monterrey - Galería</option>
+                <option value="5">Ciudad Juárez - Plaza Las Misiones</option>
+            </select>
+        </div>
+
+        <!-- Botón de acceso directo a la sección de Club Cinépolis -->
+        <a href="#club-cinepolis" class="header-club-btn">Mi Tarjeta Club Cinépolis</a>
+    </header>
+
+    <!-- ==========================================================
+         2. BARRA DE NAVEGACIÓN (NAV)
+         ========================================================== -->
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#cartelera">En Cartelera</a></li>
+            <li><a href="#estrenos">Próximos Estrenos</a></li>
+            <li><a href="#club-cinepolis">Club Cinépolis</a></li>
+            <li><a href="#promociones">Promociones</a></li>
+        </ul>
+    </nav>
+
+    <!-- ==========================================================
+         3. CUERPO PRINCIPAL (MAIN)
+         ========================================================== -->
+    <main id="inicio">
+
+        <!-- Banner publicitario de la sección principal -->
+        <section class="banner-hero">
+            <div>
+                <h1>¡Siente la Magia del Cine!</h1>
+                <p>Disfruta de las mejores películas con la mejor tecnología 4DX, IMAX y Salas VIP. Acumula puntos en cada visita con tu Tarjeta Club Cinépolis.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 1: EN CARTELERA -->
+        <section id="cartelera">
+            <h2 class="titulo-seccion">En Cartelera</h2>
+
+            <div class="grid-peliculas">
+
+                <!-- Película 1 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">2D / 3D</span>
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=500&q=80" alt="Película 1">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>Aventura en las Estrellas</h3>
+                        <p>Sci-Fi • 2h 15m | Clasificación B</p>
+                        <a href="#" class="btn-boletos">Comprar Boletos</a>
+                    </div>
+                </article>
+
+                <!-- Película 2 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">IMAX</span>
+                        <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=500&q=80" alt="Película 2">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>El Enigma del Tiempo</h3>
+                        <p>Suspenso • 1h 48m | Clasificación B15</p>
+                        <a href="#" class="btn-boletos">Comprar Boletos</a>
+                    </div>
+                </article>
+
+                <!-- Película 3 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">AA (Infantil)</span>
+                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=500&q=80" alt="Película 3">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>El Bosque Fantástico</h3>
+                        <p>Animación • 1h 30m | Clasificación A</p>
+                        <a href="#" class="btn-boletos">Comprar Boletos</a>
+                    </div>
+                </article>
+
+                <!-- Película 4 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">4DX</span>
+                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=500&q=80" alt="Película 4">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>Velocidad Máxima</h3>
+                        <p>Acción • 2h 05m | Clasificación B</p>
+                        <a href="#" class="btn-boletos">Comprar Boletos</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: PRÓXIMOS ESTRENOS -->
+        <section id="estrenos">
+            <h2 class="titulo-seccion">Próximos Estrenos</h2>
+
+            <div class="grid-peliculas">
+
+                <!-- Estreno 1 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">Próximamente</span>
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Próximo estreno 1">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>Légion: El Origen</h3>
+                        <p>Estreno: 25 de Octubre</p>
+                        <a href="#" class="btn-boletos" style="background-color: #666;">Ver Trailer</a>
+                    </div>
+                </article>
+
+                <!-- Estreno 2 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">Próximamente</span>
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=500&q=80" alt="Próximo estreno 2">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>Un Viaje Inesperado</h3>
+                        <p>Estreno: 12 de Noviembre</p>
+                        <a href="#" class="btn-boletos" style="background-color: #666;">Ver Trailer</a>
+                    </div>
+                </article>
+
+                <!-- Estreno 3 -->
+                <article class="tarjeta-pelicula">
+                    <div class="poster-container">
+                        <span class="badge">Próximamente</span>
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=500&q=80" alt="Próximo estreno 3">
+                    </div>
+                    <div class="info-pelicula">
+                        <h3>Dimensiones Ocultas</h3>
+                        <p>Estreno: 01 de Diciembre</p>
+                        <a href="#" class="btn-boletos" style="background-color: #666;">Ver Trailer</a>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: INGRESO Y REGISTRO TARJETA CLUB CINÉPOLIS -->
+        <section id="club-cinepolis" class="seccion-club">
+            <h2 class="titulo-seccion">Club Cinépolis</h2>
+            <p style="margin-bottom: 20px;">Ingresa con tu tarjeta para consultar tus Cinecash, puntos acumulados y promociones exclusivas.</p>
+
+            <div class="contenedor-formularios">
+
+                <!-- FORMULARIO 1: INICIO DE SESIÓN -->
+                <div class="columna-form">
+                    <h3>Ingresar con tu Tarjeta</h3>
+                    <form action="#" method="POST">
+                        
+                        <div class="grupo-campo">
+                            <label for="numero-tarjeta">Número de Tarjeta (16 dígitos) o Correo</label>
+                            <input type="text" id="numero-tarjeta" name="numero_tarjeta" placeholder="Ej. 1234 5678 9012 3456" required>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="password-club">Contraseña</label>
+                            <input type="password" id="password-club" name="password_club" placeholder="Mínimo 8 caracteres" required>
+                        </div>
+
+                        <button type="submit" class="btn-enviar">Iniciar Sesión</button>
+                    </form>
+                </div>
+
+                <!-- DIVISOR VISUAL -->
+                <div class="divisor"></div>
+
+                <!-- FORMULARIO 2: REGISTRO DE NUEVA TARJETA -->
+                <div class="columna-form">
+                    <h3>¿Aún no tienes cuenta? Regístrate</h3>
+                    <form action="#" method="POST">
+                        
+                        <div class="grupo-campo">
+                            <label for="nombre-registro">Nombre Completo</label>
+                            <input type="text" id="nombre-registro" name="nombre_registro" placeholder="Ingresa tu nombre" required>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="email-registro">Correo Electrónico</label>
+                            <input type="email" id="email-registro" name="email_registro" placeholder="tu@correo.com" required>
+                        </div>
+
+                        <div class="grupo-campo">
+                            <label for="tarjeta-nueva">Número de Tarjeta Club Cinépolis</label>
+                            <input type="text" id="tarjeta-nueva" name="tarjeta_nueva" placeholder="16 dígitos de tu plástico" required>
+                        </div>
+
+                        <button type="submit" class="btn-enviar btn-registro">Crear Cuenta Club</button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================================
+         4. PIE DE PÁGINA (FOOTER)
+         ========================================================== -->
+    <footer>
+        <div class="footer-contenido">
+            
+            <div class="footer-col">
+                <h4>Cartelera</h4>
+                <ul>
+                    <li><a href="#cartelera">En Cartelera</a></li>
+                    <li><a href="#estrenos">Próximos Estrenos</a></li>
+                    <li><a href="#">Muestras y Festivales</a></li>
+                    <li><a href="#">Garantía Cinépolis</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Marcas y Experiencias</h4>
+                <ul>
+                    <li><a href="#">Cinépolis VIP</a></li>
+                    <li><a href="#">IMAX</a></li>
+                    <li><a href="#">4DX</a></li>
+                    <li><a href="#">Sala Junior</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Club Cinépolis</h4>
+                <ul>
+                    <li><a href="#club-cinepolis">Mi Cuenta</a></li>
+                    <li><a href="#">Beneficios de la Tarjeta</a></li>
+                    <li><a href="#">Reglamento del Club</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contacto y Legales</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Aviso de Privacidad</a></li>
+                    <li><a href="#">Facturación Electrónica</a></li>
+                    <li><a href="#">Atención a Clientes</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="footer-creditos">
+            <p>&copy; 2026 Cinépolis de México, S.A. de C.V. Todos los derechos reservados. Proyecto educativo estructurado en HTML y CSS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
